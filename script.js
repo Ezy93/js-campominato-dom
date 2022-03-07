@@ -11,6 +11,8 @@ let button = document.getElementById("playButton");
 let resetButton = document.getElementById("resetButton");
 let squareElement = "";
 
+
+
 button.addEventListener("click" , function(){
     
     
@@ -18,14 +20,14 @@ button.addEventListener("click" , function(){
     if(selectedDifficulty.value === "easy"){
 
         for(let i = 0; i < 100; i++){
-            squareElement = document.createElement("div");
+            let squareElement = document.createElement("div");
             squareElement.innerHTML = i + 1;
-            squareElement.classList.add("squareElement" , "hundred", "d-flex", "align-items-center", "justify-content-center");
+            squareElement.classList.add("squareElement" , "eighty", "d-flex","align-items-center", "justify-content-center");
             squareElement.style.width = `calc(100% / ${squareRoot(100)})`
             squareElement.style.height = `calc(100% / ${squareRoot(100)})`
             mineField.appendChild(squareElement);
             squareElement.addEventListener("click" , function(){
-                squareElement.classList.toggle("active");
+                bombNoBomb(bombs,squareElement)
             })
         }
 
@@ -39,7 +41,7 @@ button.addEventListener("click" , function(){
             squareElement.style.height = `calc(100% / ${squareRoot(81)})`
             mineField.appendChild(squareElement);
             squareElement.addEventListener("click" , function(){
-                squareElement.classList.toggle("active");
+                bombNoBomb(bombs,squareElement)
             })
         }
 
@@ -53,7 +55,7 @@ button.addEventListener("click" , function(){
             squareElement.style.height = `calc(100% / ${squareRoot(49)})`
             mineField.appendChild(squareElement);
             squareElement.addEventListener("click" , function(){
-                squareElement.classList.toggle("active");
+                bombNoBomb(bombs,squareElement)
             })
         }
 
@@ -73,6 +75,19 @@ resetButton.addEventListener("click", function(){
  */
 function squareRoot(number){
     return Math.sqrt(number);
+}
+
+/**
+ * funzione che controlla se nel primo parametro inserito non è incluso l'innerhtml del secondo paramentro
+ * @param { Array } blackListArray 
+ * @param { Element } DOMElement 
+ */ 
+function bombNoBomb(blackListArray,DOMElement){
+    if(!blackListArray.includes(parseInt(DOMElement.innerHTML))){
+        DOMElement.classList.add("active");
+    }else{
+        DOMElement.classList.add("bomb")
+    }
 }
 
 /* Consegna
@@ -112,3 +127,5 @@ function bombsGenerator(howmuch,level){
 }
 console.log(bombsGenerator(16,100))
 
+
+    

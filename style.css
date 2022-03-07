@@ -30,6 +30,10 @@ button#resetButton{
     background-color: rgb(128, 255, 0);
 }
 
+.bomb{
+    background-color: rgb(255, 0, 0);
+}
+
 #field{
     width: 600px;
     height: 600px;
