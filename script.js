@@ -80,8 +80,8 @@ function squareRoot(number){
     return Math.sqrt(number);
 }
 
-document.querySelector("#punteggio").innerHTML = 0;
-console.log(points)
+document.querySelector("#punteggio").innerHTML = " ";
+let points = 0;
 
 /**
  * funzione che controlla se nel primo parametro inserito non è incluso l'innerhtml del secondo paramentro
@@ -91,7 +91,7 @@ console.log(points)
 function bombNoBomb(blackListArray,DOMElement){
     if(!blackListArray.includes(parseInt(DOMElement.innerHTML))){
         DOMElement.classList.add("active");
-        document.querySelector("#punteggio").innerHTML = ;
+        document.querySelector("#punteggio").innerHTML = `il tuo punteggio è: ${points++}`;
         
     }else{
         DOMElement.classList.add("bomb")
@@ -104,7 +104,7 @@ L'utente indica un livello di difficoltà in base al quale viene generata una gr
 con difficoltà 1 => tra 1 e 100
 con difficoltà 2 => tra 1 e 81
 con difficoltà 3 => tra 1 e 49
-Il computer deve generare 16 numeri casuali nello stesso range della difficoltà prescelta: le bombe. I numeri nella lista delle bombe non possono essere duplicati.
+Il computer deve generare 16 numeri casuali nello stesso range della difficoltà prescelta: le bombe. I numeri nella lista delle bombe non possono essere duplicati. //!check
 In seguito l'utente clicca su una cella: se il numero è presente nella lista dei numeri generati
     - abbiamo calpestato una bomba
     - la cella si colora di rosso e la partita termina, altrimenti la cella cliccata si colora di azzurro e l'utente può continuare a cliccare sulle altre celle.
@@ -115,25 +115,29 @@ Al termine della partita il software deve comunicare il punteggio, cioè il nume
 /* Il computer deve generare 16 numeri casuali nello stesso range della difficoltà prescelta: le bombe. 
     I numeri nella lista delle bombe non possono essere duplicati. */ //!check
 let bombs = [];
+let flag = true; 
+
 
 /**
  * funzione per generarare il posizionamento delle bombe in base alla difficoltà selezionata
- * @param {Int} howmuch 
+ * @param {Int} howMuch 
  * @param {Int} level 
  * @returns 
  */
-function bombsGenerator(howmuch,level){
-    for(let i = 0; i <= howmuch ; i++){
-        let random = Math.floor(Math.random() * (level - 1) + 1)
-        /* controllo che fa pushare solo se il numero non e gia presente */
-        if(!bombs.includes(random)){
-            bombs.push(random)
+function bombsGenerator(howMuch,level){
+    while(flag){
+        let randomInt = Math.floor(Math.random() * (level - 1) + 1)
+        bombs.push(randomInt)
+        if(bombs.length == howMuch){
+            flag = false;
         }
-
     }
+    
+    
     return bombs
 }
 console.log(bombsGenerator(16,100))
 
 
-    
+
+
