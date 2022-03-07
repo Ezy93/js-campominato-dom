@@ -13,6 +13,9 @@ let squareElement = "";
 
 
 
+
+
+
 button.addEventListener("click" , function(){
     
     
@@ -77,6 +80,9 @@ function squareRoot(number){
     return Math.sqrt(number);
 }
 
+document.querySelector("#punteggio").innerHTML = 0;
+console.log(points)
+
 /**
  * funzione che controlla se nel primo parametro inserito non è incluso l'innerhtml del secondo paramentro
  * @param { Array } blackListArray 
@@ -85,6 +91,8 @@ function squareRoot(number){
 function bombNoBomb(blackListArray,DOMElement){
     if(!blackListArray.includes(parseInt(DOMElement.innerHTML))){
         DOMElement.classList.add("active");
+        document.querySelector("#punteggio").innerHTML = ;
+        
     }else{
         DOMElement.classList.add("bomb")
     }
@@ -116,7 +124,7 @@ let bombs = [];
  */
 function bombsGenerator(howmuch,level){
     for(let i = 0; i <= howmuch ; i++){
-        let random = Math.floor(Math.random() * level + 1)
+        let random = Math.floor(Math.random() * (level - 1) + 1)
         /* controllo che fa pushare solo se il numero non e gia presente */
         if(!bombs.includes(random)){
             bombs.push(random)
