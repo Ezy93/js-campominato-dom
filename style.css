@@ -21,24 +21,10 @@ button#resetButton{
 }
 
 .squareElement{
-    text-align: center;
-    /* width: calc(100% / 10); */
     background-color: aquamarine;
     border: 3px lightslategrey solid
 }
 
-
-.hundred{
-   /*  height: calc(100% / 10); */
-}
-
-.eighty{
-    height: calc(100% / 8 );
-}
-
-.fifty{
-    height: calc(100% / 5);
-}
 
 .active{
     background-color: rgb(128, 255, 0);

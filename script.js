@@ -66,6 +66,11 @@ resetButton.addEventListener("click", function(){
     window.location.reload()
 })
 
+/**
+ * funzione che calcola la radice quadrata
+ * @param {Int} number 
+ * @returns 
+ */
 function squareRoot(number){
     return Math.sqrt(number);
 }
@@ -83,4 +88,27 @@ In seguito l'utente clicca su una cella: se il numero è presente nella lista de
 La partita termina quando il giocatore clicca su una bomba o raggiunge il numero massimo possibile di numeri consentiti.
 Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha cliccato su una cella che non era una b. */
 
+
+/* Il computer deve generare 16 numeri casuali nello stesso range della difficoltà prescelta: le bombe. 
+    I numeri nella lista delle bombe non possono essere duplicati. */ //!check
+let bombs = [];
+
+/**
+ * funzione per generarare il posizionamento delle bombe in base alla difficoltà selezionata
+ * @param {Int} howmuch 
+ * @param {Int} level 
+ * @returns 
+ */
+function bombsGenerator(howmuch,level){
+    for(let i = 0; i <= howmuch ; i++){
+        let random = Math.floor(Math.random() * level + 1)
+        /* controllo che fa pushare solo se il numero non e gia presente */
+        if(!bombs.includes(random)){
+            bombs.push(random)
+        }
+
+    }
+    return bombs
+}
+console.log(bombsGenerator(16,100))
 
