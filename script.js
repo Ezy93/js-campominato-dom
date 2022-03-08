@@ -17,7 +17,7 @@ let squareElement = "";
 
 
 button.addEventListener("click" , function(){
-    
+    document.getElementById("field").innerHTML = " "
     
     /* resetButton.classList.remove("d-none") */
     if(selectedDifficulty.value === "easy"){
@@ -46,6 +46,7 @@ button.addEventListener("click" , function(){
             squareElement.addEventListener("click" , function(){
                 bombNoBomb(bombs,squareElement)
             })
+            
         }
 
     }else{
@@ -57,9 +58,10 @@ button.addEventListener("click" , function(){
             squareElement.style.width = `calc(100% / ${squareRoot(49)})`
             squareElement.style.height = `calc(100% / ${squareRoot(49)})`
             mineField.appendChild(squareElement);
-            squareElement.addEventListener("click" , function(){
-                bombNoBomb(bombs,squareElement)
-            })
+                squareElement.addEventListener("click" , function(){
+                    bombNoBomb(bombs,squareElement)
+                })
+            
         }
 
     }
@@ -92,12 +94,13 @@ function bombNoBomb(blackListArray,DOMElement){
     if(!blackListArray.includes(parseInt(DOMElement.innerHTML))){
         DOMElement.classList.add("active");
         document.querySelector("#punteggio").innerHTML = `il tuo punteggio è: ${points++}`;
-        
+        return true
     }else{
         DOMElement.classList.add("bomb")
         document.querySelector("#punteggio").innerHTML = `hai cliccato su una mina hai perso!!! <br>
         il tuo punteggio finale è: ${points - 1}`
-        return true
+        return false
+        
     }
 }
 
